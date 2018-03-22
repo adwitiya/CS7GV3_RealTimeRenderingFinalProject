@@ -1,0 +1,516 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{3340F763-0171-4254-89E9-E7FF773858A6}</ProjectGuid>
+    <RootNamespace>testingGS</RootNamespace>
+    <Keyword>Win32Proj</Keyword>
+    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
+    <ProjectName>RealTimeRainSimulation_CS7GV3</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v141</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v141</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+    <Import Project="..\Common\FXC.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>15.0.27130.2020</_ProjectFileVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>..\..\Bin\</OutDir>
+    <IntDir>..\..\Temp\$(Configuration)\$(ProjectName)\</IntDir>
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>..\..\Bin\</OutDir>
+    <IntDir>..\..\Temp\$(Configuration)\$(ProjectName)\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>..\..\Include\DXUT\Core;..\..\Include\DXUT\Optional;..\..\Include\NVUT;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader />
+      <WarningLevel>Level3</WarningLevel>
+      <TreatWarningAsError>true</TreatWarningAsError>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <DisableSpecificWarnings>4305;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>dxutd.lib;dxutoptd.lib;nvutd.lib;dxerr.lib;dxguid.lib;d3dx9.lib;d3d9.lib;winmm.lib;comctl32.lib;dxgi.lib;d3d10.lib;d3dx10d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)$(ProjectName)d.exe</OutputFile>
+      <AdditionalLibraryDirectories>..\..\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile />
+      <SubSystem>Windows</SubSystem>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention />
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Include;C:\Users\stackoverflow\source\repos\RealTimeRendering_Final_Project\Include\DXUT\Core;C:\Users\stackoverflow\source\repos\RealTimeRendering_Final_Project\Include\DXUT\Optional;C:\Users\stackoverflow\source\repos\RealTimeRendering_Final_Project\Include\NVUT;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <PrecompiledHeader />
+      <WarningLevel>Level3</WarningLevel>
+      <TreatWarningAsError>false</TreatWarningAsError>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <DisableSpecificWarnings>4305;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>dxut.lib;dxutopt.lib;nvut.lib;d3d10.lib;d3dx10.lib;dxerr.lib;dxguid.lib;d3dx9.lib;d3d9.lib;winmm.lib;comctl32.lib;dxgi.lib;d3dx10d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Lib\x86;C:\Users\stackoverflow\source\repos\RealTimeRendering_Final_Project\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <DelayLoadDLLs>d3dx10.dll;%(DelayLoadDLLs)</DelayLoadDLLs>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile />
+      <SubSystem>Windows</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention />
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="Rain.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <FXC Include="Rain.fx">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </FXC>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\Media\arrow.x" />
+    <None Include="..\..\Media\Bridge\Bridge.x" />
+    <None Include="..\..\Media\F_512_data.csv" />
+    <None Include="..\..\Media\G0_pi_2_64_data.csv" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\..\Media\Bridge\bridge_color.dds" />
+    <Image Include="..\..\Media\Bridge\bridge_normal.dds" />
+    <Image Include="..\..\Media\Bridge\bridge_spec.dds" />
+    <Image Include="..\..\Media\directx.ico" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0000.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0001.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0002.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0003.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0004.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0005.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0006.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0007.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0008.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0009.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0010.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0011.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0012.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0013.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0014.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0015.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0016.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0017.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0018.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0019.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0020.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0021.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0022.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0023.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0024.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0025.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0026.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0027.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0028.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0029.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0030.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0031.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0032.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0033.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0034.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0035.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0036.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0037.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0038.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0039.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0040.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0041.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0042.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0043.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0044.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0045.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0046.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0047.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0048.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0049.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0050.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0051.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0052.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0053.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0054.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0055.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0056.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0057.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0058.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0059.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0060.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0061.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0062.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0063.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0064.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0065.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0066.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0067.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0068.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0069.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0070.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0071.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0072.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0073.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0074.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0075.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0076.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0077.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0078.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0079.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0080.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0081.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0082.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0083.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0084.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0085.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0086.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0087.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0088.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0089.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0090.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0091.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0092.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0093.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0094.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0095.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0096.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0097.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0098.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0099.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0100.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0101.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0102.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0103.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0104.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0105.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0106.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0107.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0108.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0109.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0110.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0111.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0112.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0113.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0114.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0115.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0116.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0117.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0118.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0119.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0120.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0121.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0122.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0123.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0124.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0125.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0126.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0127.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0128.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0129.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0130.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0131.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0132.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0133.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0134.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0135.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0136.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0137.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0138.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0139.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0140.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0141.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0142.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0143.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0144.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0145.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0146.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0147.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0148.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0149.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0150.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0151.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0152.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0153.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0154.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0155.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0156.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0157.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0158.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0159.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0160.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0161.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0162.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0163.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0164.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0165.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0166.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0167.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0168.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0169.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0170.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0171.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0172.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0173.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0174.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0175.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0176.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0177.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0178.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0179.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0180.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0181.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0182.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0183.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0184.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0185.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0186.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0187.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0188.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0189.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0190.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0191.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0192.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0193.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0194.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0195.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0196.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0197.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0198.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0199.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0200.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0201.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0202.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0203.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0204.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0205.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0206.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0207.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0208.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0209.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0210.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0211.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0212.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0213.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0214.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0215.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0216.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0217.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0218.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0219.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0220.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0221.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0222.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0223.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0224.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0225.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0226.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0227.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0228.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0229.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0230.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0231.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0232.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0233.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0234.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0235.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0236.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0237.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0238.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0239.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0240.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0241.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0242.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0243.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0244.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0245.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0246.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0247.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0248.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0249.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0250.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0251.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0252.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0253.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0254.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0255.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0256.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0257.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0258.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0259.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0260.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0261.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0262.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0263.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0264.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0265.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0266.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0267.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0268.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0269.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0270.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0271.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0272.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0273.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0274.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0275.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0276.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0277.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0278.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0279.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0280.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0281.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0282.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0283.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0284.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0285.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0286.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0287.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0288.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0289.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0290.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0291.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0292.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0293.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0294.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0295.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0296.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0297.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0298.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0299.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0300.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0301.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0302.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0303.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0304.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0305.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0306.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0307.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0308.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0309.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0310.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0311.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0312.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0313.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0314.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0315.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0316.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0317.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0318.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0319.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0320.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0321.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0322.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0323.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0324.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0325.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0326.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0327.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0328.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0329.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0330.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0331.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0332.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0333.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0334.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0335.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0336.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0337.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0338.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0339.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0340.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0341.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0342.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0343.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0344.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0345.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0346.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0347.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0348.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0349.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0350.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0351.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0352.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0353.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0354.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0355.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0356.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0357.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0358.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0359.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0360.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0361.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0362.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0363.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0364.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0365.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0366.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0367.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0368.dds" />
+    <Image Include="..\..\Media\rainTextures\cv0_vPositive_0369.dds" />
+    <Image Include="..\..\Media\rainTextures\splashes\SBumpVolume.dds" />
+    <Image Include="..\..\Media\rainTextures\splashes\SDiffuseVolume.dds" />
+    <Image Include="..\..\Media\SkyCubemap2.dds" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\..\Media\noticeForFogLUTs.txt" />
+    <Text Include="..\..\Media\rainTextures\notice.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Rain.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Resource.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+    <Import Project="..\Common\FXC.targets" />
+  </ImportGroup>
+</Project>
