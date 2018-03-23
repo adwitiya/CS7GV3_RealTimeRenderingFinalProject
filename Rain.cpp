@@ -1,23 +1,3 @@
-//----------------------------------------------------------------------------------
-// File:   Rain.cpp
-// Author: Sarah Tariq
-// Email:  sdkfeedback@nvidia.com
-// 
-// Copyright (c) 2007 NVIDIA Corporation. All rights reserved.
-//
-// TO  THE MAXIMUM  EXTENT PERMITTED  BY APPLICABLE  LAW, THIS SOFTWARE  IS PROVIDED
-// *AS IS*  AND NVIDIA AND  ITS SUPPLIERS DISCLAIM  ALL WARRANTIES,  EITHER  EXPRESS
-// OR IMPLIED, INCLUDING, BUT NOT LIMITED  TO, IMPLIED WARRANTIES OF MERCHANTABILITY
-// AND FITNESS FOR A PARTICULAR PURPOSE.  IN NO EVENT SHALL  NVIDIA OR ITS SUPPLIERS
-// BE  LIABLE  FOR  ANY  SPECIAL,  INCIDENTAL,  INDIRECT,  OR  CONSEQUENTIAL DAMAGES
-// WHATSOEVER (INCLUDING, WITHOUT LIMITATION,  DAMAGES FOR LOSS OF BUSINESS PROFITS,
-// BUSINESS INTERRUPTION, LOSS OF BUSINESS INFORMATION, OR ANY OTHER PECUNIARY LOSS)
-// ARISING OUT OF THE  USE OF OR INABILITY  TO USE THIS SOFTWARE, EVEN IF NVIDIA HAS
-// BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
-//
-//
-//----------------------------------------------------------------------------------
-
 #define _USE_MATH_DEFINES
 
 #include "DXUT.h"
@@ -57,7 +37,7 @@ ID3DX10Sprite*              g_pSprite = NULL;       // Sprite for batching text 
 ID3D10Effect*               g_pEffect = NULL;       // D3DX effect interface
 CDXUTTextHelper*            g_pTxtHelper = NULL;
 CDXUTDirectionWidget*       g_lightDirectionWidget;
-bool                        g_bShowHelp = false;    // show help menu
+bool                        g_bShowHelp = true;    // show help menu
 D3D10_VIEWPORT              g_SceneVP;
 
 //techniques
@@ -328,10 +308,7 @@ void resetGUIControls()
     WCHAR sz[100];
 
     int iY = 10; 
-    //g_SampleUI.AddButton(IDC_TOGGLEPRESET1,L"Preset 1",35, iY, 125, 22, false, VK_F4);
-    g_SampleUI.AddButton(IDC_TOGGLEPRESET2,L"Preset 2",35, iY+=24, 125, 22, false, VK_F5);
     iY+=24;
-    g_SampleUI.AddCheckBox( IDC_TOGGLEBG, L"Show Background", 35, iY += 24, 125, 22, g_bRenderBg );
     g_SampleUI.AddCheckBox( IDC_TOGGLEMOVE, L"Move Particles", 35, iY += 24, 125, 22, g_bMoveParticles );
     g_SampleUI.AddCheckBox( IDC_TOGGLEDRAW, L"Draw Particles", 35, iY += 24, 125, 22, g_bDrawParticles );
     g_SampleUI.AddCheckBox( IDC_TOGGLECHEAPSHADER, L"Use constant intensity streaks", 35, iY += 24, 125, 22, g_bUseCheapShader );
@@ -413,17 +390,15 @@ HRESULT CALLBACK OnD3D10CreateDevice( ID3D10Device* pd3dDevice, const DXGI_SURFA
 
  
     int iY = 10; 
-    g_HUD.AddButton( IDC_TOGGLEFULLSCREEN, L"Toggle full screen", 35, iY, 125, 22 );
-    g_HUD.AddButton( IDC_TOGGLEREF, L"Toggle REF (F3)", 35, iY += 24, 125, 22, VK_F3 );
-    g_HUD.AddButton( IDC_CHANGEDEVICE, L"Change device (F2)", 35, iY += 24, 125, 22, VK_F2 );
+  
 
     g_SampleUI.SetCallback( OnGUIEvent ); 
 
 
     
-    V_RETURN( D3DX10CreateFont( pd3dDevice, 15, 0, FW_BOLD, 1, FALSE, DEFAULT_CHARSET, 
+    V_RETURN( D3DX10CreateFont( pd3dDevice, 25, 0, FW_BOLD, 1, FALSE, DEFAULT_CHARSET, 
                                 OUT_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH | FF_DONTCARE, 
-                                L"Arial", &g_pFont ) );
+                                L"Times New Roman", &g_pFont ) );
     V_RETURN( D3DX10CreateSprite( pd3dDevice, 512, &g_pSprite ) );
     g_pTxtHelper = new CDXUTTextHelper( NULL, NULL, g_pFont, g_pSprite, 15 );
 
@@ -795,7 +770,7 @@ HRESULT CALLBACK OnD3D10ResizedSwapChain( ID3D10Device* pd3dDevice, IDXGISwapCha
     g_Camera.SetButtonMasks(NULL, MOUSE_WHEEL, MOUSE_RIGHT_BUTTON );
     
     g_HUD.SetLocation( pBufferSurfaceDesc->Width-170, 0 );
-    g_HUD.SetSize( 170, 170 );
+    g_HUD.SetSize( 0, 0 );
     g_SampleUI.SetLocation( pBufferSurfaceDesc->Width-170, 100 ); 
     g_SampleUI.SetSize( 170, 300 );     
 
@@ -1116,33 +1091,22 @@ void CALLBACK OnD3D10FrameRender( ID3D10Device* pd3dDevice, double fTime, float 
 void RenderText()
 {
     g_pTxtHelper->Begin();
-    g_pTxtHelper->SetInsertionPos( 2, 0 );
-    g_pTxtHelper->SetForegroundColor( D3DXCOLOR( 1.0f, 1.0f, 0.0f, 1.0f ) );
-    g_pTxtHelper->DrawTextLine( DXUTGetFrameStats(true) );
-    g_pTxtHelper->DrawTextLine( DXUTGetDeviceStats() );
 
     // Draw help
     if( g_bShowHelp )
     {
         UINT nBackBufferHeight = ( DXUTIsAppRenderingWithD3D9() ) ? DXUTGetD3D9BackBufferSurfaceDesc()->Height : DXUTGetDXGIBackBufferSurfaceDesc()->Height;
-        g_pTxtHelper->SetInsertionPos( 2, nBackBufferHeight-15*6 );
-        g_pTxtHelper->SetForegroundColor( D3DXCOLOR( 1.0f, 1.0f, 0.0f, 1.0f ) );
-        g_pTxtHelper->DrawTextLine( L"Controls:" );
+       
+        g_pTxtHelper->SetForegroundColor( D3DXCOLOR( 1.0f, 0.0f, 0.0f, 1.0f ) );
 
-        g_pTxtHelper->SetInsertionPos( 20, nBackBufferHeight-15*5 );
-        g_pTxtHelper->DrawTextLine( L"Rotate camera:  Right mouse button\n"
-                                    L"Zoom camera:  Mouse wheel scroll\n"
-                                    L"Rotate light: Left mouse button\n"
-                                    );
-
-        g_pTxtHelper->SetInsertionPos( 250, nBackBufferHeight-15*5 );
-        g_pTxtHelper->DrawTextLine( L"Hide help: F1\n" 
-                                    L"Quit: ESC\n" );
+        g_pTxtHelper->SetInsertionPos( 10, 20 );
+        g_pTxtHelper->DrawTextLine( L"Adwitiya Chakraborty\n" 
+                                    L"CS7GV3 Real Time Rendering of Rain\n" 
+									L"Trinity College Dublin\n"	);
     }
     else
     {
         g_pTxtHelper->SetForegroundColor( D3DXCOLOR( 1.0f, 1.0f, 1.0f, 1.0f ) );
-        g_pTxtHelper->DrawTextLine( L"Press F1 for help" );
     }
 
     g_pTxtHelper->End();
