@@ -107,15 +107,15 @@ ID3D10EffectScalarVariable* g_rainSplashesYDisplaceShaderVariable = NULL;
 
 //presets for the variables
 const D3DXVECTOR3 g_constFogVector1 = D3DXVECTOR3(0.03f,0.03f,0.03f);
-const float       g_constDirLightIntensity1 = 0.18f;
-const float       g_constResponseDirLight1 = 1.0f;
+const float       g_constDirLightIntensity1 = 2.00f;
+const float       g_constResponseDirLight1 = 2.0f;
 const float       g_constPointLightIntensity1 = 0.5f;
 const float       g_constCosSpotLight1 = 0.3f;
-const float       g_constResponsePointLight1 = 2.0f;
+const float       g_constResponsePointLight1 = 0.0f;
 const float       g_constDrawFraction1 = 0.7f;
 const float       g_constWindAmount1 = 1.0;
 const D3DXVECTOR3 g_constVecEye1 = D3DXVECTOR3( 15.5f, 5.0f, 0.0f );
-const D3DXVECTOR3 g_constAtVec1  = D3DXVECTOR3( 0.0f, 3.0f, 0.0f );
+const D3DXVECTOR3 g_constAtVec1  = D3DXVECTOR3( 0.0f, 6.0f, 0.0f );
 const D3DXVECTOR3 g_directionalLightVector1 = D3DXVECTOR3(0.551748, 0.731354, 0.400869);
 
 const D3DXVECTOR3 g_constFogVector2 = D3DXVECTOR3(0.02f,0.02f,0.02f);
@@ -140,14 +140,14 @@ bool g_bRenderBg = true;
 bool g_bMoveParticles = true; 
 bool g_bDrawParticles = true;
 int g_numRainVertices = 150000;
-float g_dirLightIntensity = 0.27f;
+float g_dirLightIntensity = 0.00f;
 float g_PointLightIntensity = 0.58;
 float g_znear = 1.0f;
 float g_zfar  = 30000.0f;
 float g_fov =  0.3*D3DX_PI;
 float g_cosSpotLight = 0.54;
 bool g_bUseSpotLight = true;
-float g_responseDirLight = 0.9f;
+float g_responseDirLight = 2.0f;
 float g_responsePointLight = 2.0f;
 float g_heightMin = 0.0f;
 float g_heightRange = 40.0f;
@@ -289,7 +289,7 @@ int WINAPI wWinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdL
 
     DXUTInit( true, true, NULL ); // Parse the command line, show msgboxes on error, no extra command line params
     DXUTSetCursorSettings( true, true ); // Show the cursor and clip it when in full screen
-    DXUTCreateWindow( L"Rain" );
+    DXUTCreateWindow( L"Real Time Rendering of Rain CS7GV3 - Adwitiya Chakraborty -17320705" );
     DXUTCreateDevice( true, (int)g_ScreenWidth, (int)g_ScreenHeight ); 
     DXUTMainLoop(); // Enter into the DXUT render loop
 
@@ -306,55 +306,36 @@ void resetGUIControls()
 {
 
     WCHAR sz[100];
+	
 
-    int iY = 10; 
-    iY+=24;
-    g_SampleUI.AddCheckBox( IDC_TOGGLEMOVE, L"Move Particles", 35, iY += 24, 125, 22, g_bMoveParticles );
-    g_SampleUI.AddCheckBox( IDC_TOGGLEDRAW, L"Draw Particles", 35, iY += 24, 125, 22, g_bDrawParticles );
-    g_SampleUI.AddCheckBox( IDC_TOGGLECHEAPSHADER, L"Use constant intensity streaks", 35, iY += 24, 125, 22, g_bUseCheapShader );
+
+	int iY;
+    g_SampleUI.AddCheckBox( IDC_TOGGLEMOVE, L"Move Particles",-1080,830, 125, 22, g_bMoveParticles );
 
     //fog
-    iY += 24;
-    StringCchPrintf( sz, 100, L"Fog Thickness: %0.2f", g_fogVector.x ); 
-    g_SampleUI.AddStatic( IDC_FOGTHICKNESS_STATIC, sz, 35, iY += 24, 125, 22 );
-    g_SampleUI.AddSlider( IDC_FOGTHICKNESS_SCALE, 50, iY += 20, 100, 22, 0, 200, (int)(g_fogVector.x*1000) );
-    
-    //directional light
-    iY += 24;
-    g_SampleUI.AddStatic( IDC_LIGHT_STATIC, L"Directional Light", 35, iY += 24 , 125, 22 );
-   
-    StringCchPrintf( sz, 100, L"Intensity: %0.2f", g_dirLightIntensity ); 
-    g_SampleUI.AddStatic( IDC_DIRLIGHTINTENSITY_STATIC, sz, 35, iY += 24, 125, 22 );
-    g_SampleUI.AddSlider( IDC_DIRLIGHTINTENSITY_SCALE, 50, iY += 20, 100, 22, 0, 100, (int)(g_dirLightIntensity*100) );
 
-    StringCchPrintf( sz, 100, L"Rain response: %0.2f", g_responseDirLight ); 
-    g_SampleUI.AddStatic( IDC_RESPONSEDIRLIGHT_STATIC, sz, 35, iY += 24, 125, 22 );
-    g_SampleUI.AddSlider( IDC_RESPONSEDIRLIGHT_SCALE, 50, iY += 20, 100, 22, 0, 200, (int)(g_responseDirLight*100) );
+    StringCchPrintf( sz, 100, L"Fog Thickness: %0.2f", g_fogVector.x ); 
+    g_SampleUI.AddStatic( IDC_FOGTHICKNESS_STATIC, sz, -1112, 325, 150, 30 );
+    g_SampleUI.AddSlider( IDC_FOGTHICKNESS_SCALE, -1080, 345, 100, 22, 0, 200, (int)(g_fogVector.x*1000) );
+    
+  
 
     //point light
-    iY += 24;
+
     StringCchPrintf( sz, 100, L"Point Light: %0.2f", g_PointLightIntensity ); 
-    g_SampleUI.AddStatic( IDC_POINTLIGHTINTENSITY_STATIC, sz, 35, iY += 24, 125, 22 );
-    g_SampleUI.AddSlider( IDC_POINTLIGHTINTENSITY_SCALE, 50, iY += 20, 100, 22, 0, 200, (int)(g_PointLightIntensity*100) );
+    g_SampleUI.AddStatic( IDC_POINTLIGHTINTENSITY_STATIC, sz, -1107,515, 125, 22 );
+    g_SampleUI.AddSlider( IDC_POINTLIGHTINTENSITY_SCALE, -1080, 535, 100, 22, 0, 200, (int)(g_PointLightIntensity*100) );
 
-    iY += 24;
-    g_SampleUI.AddCheckBox( IDC_TOGGLESPOTLIGHT, L"Use SpotLight", 35, iY, 125, 22, g_bUseSpotLight );
-  
-    iY += 5;
-    StringCchPrintf( sz, 100, L"Cos SpotLight: %0.2f", g_cosSpotLight ); 
-    g_SampleUI.AddStatic( IDC_COSSPOTLIGHT_STATIC, sz, 35, iY += 24, 125, 22 );
-    g_SampleUI.AddSlider( IDC_COSSPOTLIGHT_SCALE, 50, iY += 20, 100, 22, 0, 100, (int)(g_cosSpotLight*100) );
 
-    StringCchPrintf( sz, 100, L"Rain response: %0.2f", g_responsePointLight ); 
-    g_SampleUI.AddStatic( IDC_RESPONSEPOINTLIGHT_STATIC, sz, 35, iY += 24, 125, 22 );
-    g_SampleUI.AddSlider( IDC_RESPONSEPOINTLIGHT_SCALE, 50, iY += 20, 100, 22, 0, 200, (int)(g_responsePointLight*100) );
 
-    iY += 34;
-    StringCchPrintf( sz, 100, L"Particles Drawn: %0.2f", g_numRainVertices*g_DrawFraction ); 
-    g_SampleUI.AddStatic( IDC_DRAWFRACTION_STATIC, sz, 35, iY += 24, 150, 22 );
-    g_SampleUI.AddSlider( IDC_DRAWFRACTION_SCALE, 50, iY += 20, 100, 22, 0, 100, (int)(g_DrawFraction*100) );
+    StringCchPrintf( sz, 100, L"Rain Response: %0.2f", g_numRainVertices*g_DrawFraction ); 
+    g_SampleUI.AddStatic( IDC_DRAWFRACTION_STATIC, sz, -1100, 410, 150, 22 );
+    g_SampleUI.AddSlider( IDC_DRAWFRACTION_SCALE, -1080, 430, 100, 22, 0, 100, (int)(g_DrawFraction*100) );
 
-    iY += 14;
+
+
+
+
     StringCchPrintf( sz, 100, L"Wind: %0.2f", g_WindAmount ); 
     g_SampleUI.AddStatic( IDC_WINDAMOUNT_STATIC, sz, 35, iY += 24, 125, 22 );
     g_SampleUI.AddSlider( IDC_WINDAMOUNT_SCALE, 50, iY += 20, 100, 22, 0, 100, (int)(g_WindAmount*100) );
@@ -678,7 +659,6 @@ HRESULT CALLBACK OnD3D10CreateDevice( ID3D10Device* pd3dDevice, const DXGI_SURFA
     V_RETURN( pd3dDevice->CreateInputLayout( layoutArrow, numElements, PassDesc.pIAInputSignature, PassDesc.IAInputSignatureSize, &g_pVertexLayoutArrow ) );
     //load the arrow mesh
     V_RETURN( NVUTFindDXSDKMediaFileCch( str, MAX_PATH, L"arrow.x" ) ); 
-    V_RETURN( g_MeshArrow.Create( pd3dDevice, str, (D3D10_INPUT_ELEMENT_DESC*)layoutArrow, numElements ) );
 
     //-------------------------------------------------------------------------------------------------
     //vertex buffer and layout for sky
@@ -1360,7 +1340,7 @@ void CALLBACK OnGUIEvent( UINT nEvent, int nControlID, CDXUTControl* pControl, v
         {
             WCHAR sz[100];
             g_DrawFraction = (float) (g_SampleUI.GetSlider( IDC_DRAWFRACTION_SCALE )->GetValue()* 0.01f);
-            StringCchPrintf( sz, 100, L"Particles Drawn: %0.2f", g_numRainVertices*g_DrawFraction ); 
+            StringCchPrintf( sz, 100, L"Rain Response: %0.2f", g_numRainVertices*g_DrawFraction ); 
             g_SampleUI.GetStatic( IDC_DRAWFRACTION_STATIC )->SetText( sz );
             setShadingParametersBasedOnRain();
             break;

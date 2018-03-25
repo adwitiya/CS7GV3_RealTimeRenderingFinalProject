@@ -818,6 +818,9 @@ float4 PSScene(VS_OUTPUT_SCENE In) : SV_Target
         
     //reflection of the scene-----------------------------------------------------------
     float3 reflVect = reflect(V, N);
+
+
+	float4 col = float4 (1.0, 1.0, 0.0, 1.0);
         
     //directional light-----------------------------------------------------------------
     float3 lightDir = g_lightPos - In.worldPos;
@@ -856,13 +859,14 @@ float4 PSScene(VS_OUTPUT_SCENE In) : SV_Target
 
     float3 airlightColor = airlight1 + airlight2 + dirAirLight;
 
+
     outputColor = float4( airlightColor.xyz + 
-                          sceneColor.xyz*(diffusePointLight1.xyz + diffusePointLight2.xyz + diffuseDirLight.xyz) +
-                          (splashDiffuse + sceneSpecular.xyz)*(specularDirLight + specularPointLight + specularPointLight2) ,1); 
+                          sceneColor.xyz*(diffusePointLight1.xyz + diffusePointLight2.xyz + diffuseDirLight.xyz ) +
+                          (splashDiffuse + sceneSpecular.xyz )*(specularDirLight + specularPointLight + specularPointLight2 ) ,1); 
    
      //if this is a lamp make it emissive 
     if(sceneColor.x > 0.9 && sceneColor.y> 0.9)
-        outputColor = float4(1,1,1,1)*g_PointLightIntensity*20; 
+        outputColor = float4(.1,0.1,0,1)*g_PointLightIntensity*20;  //changes lamp body color
    
     return outputColor; 
 }
@@ -962,7 +966,7 @@ VS_OUTPUT_SKY VSSky( VS_INPUT_SKY Input )
 //pixel shader for the scene
 float4 PSSky(VS_OUTPUT_SKY In) : SV_Target
 {
-  
+	float3 col3 = float3(1.0, 1.0, 0.0);
     float4 outputColor;    
     float4 sceneColor =  float4(0,0,0,0);
 
@@ -983,7 +987,9 @@ float4 PSSky(VS_OUTPUT_SKY In) : SV_Target
     float3 airlight = calculateAirLightPointLight(Dvp,g_DSVPointLight,g_ViewSpaceLightVec,viewRay);
     float3 airlight2 = calculateAirLightPointLight(Dvp,g_DSVPointLight2,g_ViewSpaceLightVec2,viewRay);
            
+
     float3 airlightColor = airlight + airlight2 + dirAirLight;
+
     outputColor = float4( airlightColor.xyz + sceneColor.xyz*diffuseDirLight.xyz, 1); 
     
     return outputColor;
